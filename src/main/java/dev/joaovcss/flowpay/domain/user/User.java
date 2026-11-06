@@ -3,7 +3,6 @@ package dev.joaovcss.flowpay.domain.user;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,16 +22,17 @@ public class User {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
-    @ToString.Exclude
+    @Column(nullable = false)
     private String passwordHash;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private OffsetDateTime createdAt;
 
     @UpdateTimestamp
+    @Column(nullable = false)
     private OffsetDateTime updatedAt;
 }
