@@ -1,4 +1,4 @@
-package dev.joaovcss.flowpay.models.Enums;
+package dev.joaovcss.flowpay.models.enums;
 
 public enum Periodicity {
     MONTHLY,
