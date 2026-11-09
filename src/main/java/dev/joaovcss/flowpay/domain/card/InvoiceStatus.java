@@ -1,4 +1,4 @@
-package dev.joaovcss.flowpay.models.enums;
+package dev.joaovcss.flowpay.domain.card;
 
 public enum InvoiceStatus {
     OPEN,
