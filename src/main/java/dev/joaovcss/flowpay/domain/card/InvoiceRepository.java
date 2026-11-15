@@ -8,4 +8,6 @@ import java.util.UUID;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
     Optional<Invoice> findByCardIdAndReferenceMonth(UUID cardId, LocalDate referenceMonth);
+
+    Optional<Invoice> findByIdAndUserId(UUID id, UUID userId);
 }
