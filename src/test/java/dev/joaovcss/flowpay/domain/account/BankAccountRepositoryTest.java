@@ -24,14 +24,13 @@ class BankAccountRepositoryTest {
 
     TestDataFactory data;
 
+    @Autowired
+    BankAccountRepository bankAccountRepository;
+
     @BeforeEach
     void setUp() {
         data = new TestDataFactory(entityManager);
     }
-
-    @Autowired
-    BankAccountRepository bankAccountRepository;
-
 
     @Test
     @DisplayName("Should find a bank account by id and user id")
