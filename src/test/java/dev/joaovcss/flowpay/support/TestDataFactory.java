@@ -2,7 +2,9 @@ package dev.joaovcss.flowpay.support;
 
 import dev.joaovcss.flowpay.domain.account.AccountType;
 import dev.joaovcss.flowpay.domain.account.BankAccount;
+import dev.joaovcss.flowpay.domain.card.CardPurchase;
 import dev.joaovcss.flowpay.domain.card.CreditCard;
+import dev.joaovcss.flowpay.domain.card.Installment;
 import dev.joaovcss.flowpay.domain.card.Invoice;
 import dev.joaovcss.flowpay.domain.card.InvoiceStatus;
 import dev.joaovcss.flowpay.domain.transaction.Transaction;
@@ -62,6 +64,29 @@ public class TestDataFactory {
         invoice.setStatus(status);
         entityManager.persist(invoice);
         return invoice;
+    }
+
+    public CardPurchase createCardPurchase(User user, CreditCard card, String totalAmount, int installmentsCount) {
+        CardPurchase purchase = new CardPurchase();
+        purchase.setUser(user);
+        purchase.setCard(card);
+        purchase.setDescription("Compra de teste");
+        purchase.setTotalAmount(new BigDecimal(totalAmount));
+        purchase.setInstallmentsCount((short) installmentsCount);
+        purchase.setPurchaseDate(LocalDate.of(2026, 1, 5));
+        entityManager.persist(purchase);
+        return purchase;
+    }
+
+    public Installment createInstallment(User user, CardPurchase purchase, Invoice invoice, int number, String amount) {
+        Installment installment = new Installment();
+        installment.setUser(user);
+        installment.setInvoice(invoice);
+        installment.setNumber((short) number);
+        installment.setAmount(new BigDecimal(amount));
+        purchase.addInstallment(installment);
+        entityManager.persist(installment);
+        return installment;
     }
 
     public Transfer createTransfer(User user) {
